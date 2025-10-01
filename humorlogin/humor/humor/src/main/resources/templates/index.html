@@ -2,11 +2,27 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Página Principal</title>
+    <title>Sistema Humor - Página Principal</title>
 </head>
 <body>
-<h1>Bem-vindo ao sistema!</h1>
-<p><a href="/register">Cadastro</a></p>
-<p><a href="/login">Login</a></p>
+    <center>
+        <h1>Bem-vindo ao Sistema!</h1>
+        
+        <table border="0" cellpadding="20">
+            <tr>
+                <td>
+                    <h2> Novo por aqui?</h2>
+                    <p><a href="/register"><button>Fazer Cadastro</button></a></p>
+                </td>
+                <td>
+                    <h2>Já tem conta?</h2>
+                    <p><a href="/login"><button>Fazer Login</button></a></p>
+                </td>
+            </tr>
+        </table>
+        
+        <hr width="50%">
+        <p><em>Sistema de gerenciamento de humor</em></p>
+    </center>
 </body>
 </html>
