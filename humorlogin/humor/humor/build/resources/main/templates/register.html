@@ -2,19 +2,51 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Cadastro</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Cadastro - Sistema Humor</title>
 </head>
 <body>
-<h1>Cadastro</h1>
-<form action="/auth/register" method="post">
-    <label>Usuário:</label>
-    <input type="text" name="username" placeholder="Usuário" required><br><br>
+<center>
 
-    <label>Senha:</label>
-    <input type="password" name="password" placeholder="Senha" required><br><br>
+    <div th:if="${param.error}" style="color:red; margin-bottom: 15px;">
+    <span th:switch="${param.error[0]}">
+        <span th:case="'username'">O nome de usuário não pode ficar vazio!</span>
+        <span th:case="'exists_username'">Este nome de usuário já está em uso!</span>
+        <span th:case="'exists_email'">Este email já está cadastrado!</span>
+        <span th:case="'weak_password'">A senha deve ter pelo menos 6 caracteres!</span>
+        <span th:case="'invalid_email'">Email inválido!</span>
+        <span th:case="*">Erro desconhecido.</span>
+    </span>
+    </div>
 
-    <button type="submit">Cadastrar</button>
-</form>
-<p><a href="/">Voltar</a></p>
+
+    <form action="/auth/register" method="post">
+        <table border="0" cellpadding="8">
+            <tr>
+                <td align="right"><strong>Usuário:</strong></td>
+                <td><input type="text" name="username" placeholder="Escolha um nome de usuário" required size="25"></td>
+            </tr>
+            <tr>
+                <td align="right"><strong>Email:</strong></td>
+                <td><input type="email" name="email" placeholder="exemplo@email.com" required size="25"></td>
+            </tr>
+            <tr>
+                <td align="right"><strong>Senha:</strong></td>
+                <td><input type="password" name="password" placeholder="Mínimo 6 caracteres" required size="25"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <br>
+                    <button type="submit" style="padding: 8px 20px;">Cadastrar</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <br>
+    <hr width="30%">
+    <p><a href="/login">Já tem conta? Faça login aqui</a></p>
+    <p><a href="/">Voltar para página inicial</a></p>
+</center>
 </body>
 </html>
