@@ -2,30 +2,45 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Login - Sistema Humor</title>
 </head>
 <body>
-<h1>Login</h1>
-<form action="/auth/login" method="post">
-    <label>Usuário:</label>
-    <input type="text" name="username" placeholder="Usuário" required><br><br>
+    <center>
+        <h1>Login</h1>
+        
+        <!-- mensagem de sucesso após cadastro -->
+        <div th:if="${param.success}" style="color: green; margin: 15px; border: 1px solid green; padding: 10px; background: #f0fff0;">
+            Cadastro realizado com sucesso! Faça login.
+        </div>
 
-    <label>Senha:</label>
-    <input type="password" name="password" placeholder="Senha" required><br><br>
+        <!-- mensagem de erro -->
+        <div th:if="${param.error}" style="color: red; margin: 15px; border: 1px solid red; padding: 10px; background: #fff0f0;">
+            Usuário ou senha inválidos!
+        </div>
 
-    <button type="submit">Entrar</button>
-</form>
+        <form action="/auth/login" method="post">
+            <table border="0" cellpadding="8">
+                <tr>
+                    <td align="right"><strong>👤 Usuário:</strong></td>
+                    <td><input type="text" name="username" placeholder="Digite seu usuário" required size="25"></td>
+                </tr>
+                <tr>
+                    <td align="right"><strong>🔒 Senha:</strong></td>
+                    <td><input type="password" name="password" placeholder="Digite sua senha" required size="25"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <br>
+                        <button type="submit" style="padding: 8px 20px;">Entrar</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
 
-<!-- mensagem de erro -->
-<div th:if="${param.error}" style="color: red; margin-top: 10px;">
-    Usuário ou senha inválidos!
-</div>
-
-<!-- mensagem de sucesso após cadastro -->
-<div th:if="${param.success}" style="color: green; margin-top: 10px;">
-    Cadastro realizado com sucesso! Faça login.
-</div>
-
-<p><a href="/">Voltar</a></p>
+        <br>
+        <hr width="30%">
+        <p><a href="/register">Não tem conta? Cadastre-se aqui</a></p>
+        <p><a href="/">Voltar para página inicial</a></p>
+    </center>
 </body>
 </html>
