@@ -2,19 +2,56 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Cadastro</title>
+    <title>Cadastro - Sistema Humor</title>
 </head>
 <body>
-<h1>Cadastro</h1>
-<form action="/auth/register" method="post">
-    <label>Usuário:</label>
-    <input type="text" name="username" placeholder="Usuário" required><br><br>
+    <center>
+        <h1>Cadastro de Usuário</h1>
+        
+        <!-- Mensagens de erro -->
+        <div th:if="${param.error == 'username'}" style="color: red; margin: 15px; border: 1px solid red; padding: 10px; background: #fff0f0;">
+            Nome de usuário é obrigatório!
+        </div>
+        <div th:if="${param.error == 'exists_username'}" style="color: red; margin: 15px; border: 1px solid red; padding: 10px; background: #fff0f0;">
+            Este nome de usuário já está em uso!
+        </div>
+        <div th:if="${param.error == 'exists_email'}" style="color: red; margin: 15px; border: 1px solid red; padding: 10px; background: #fff0f0;">
+            Este email já está cadastrado!
+        </div>
+        <div th:if="${param.error == 'weak_password'}" style="color: red; margin: 15px; border: 1px solid red; padding: 10px; background: #fff0f0;">
+            Senha muito fraca! Mínimo 6 caracteres.
+        </div>
+        <div th:if="${param.error == 'invalid_email'}" style="color: red; margin: 15px; border: 1px solid red; padding: 10px; background: #fff0f0;">
+            Email inválido! Deve conter '@' e terminar com '.com'
+        </div>
 
-    <label>Senha:</label>
-    <input type="password" name="password" placeholder="Senha" required><br><br>
+        <form action="/auth/register" method="post">
+            <table border="0" cellpadding="8">
+                <tr>
+                    <td align="right"><strong>Usuário:</strong></td>
+                    <td><input type="text" name="username" placeholder="Escolha um nome de usuário" required size="25"></td>
+                </tr>
+                <tr>
+                    <td align="right"><strong>Email:</strong></td>
+                    <td><input type="email" name="email" placeholder="exemplo@email.com" required size="25"></td>
+                </tr>
+                <tr>
+                    <td align="right"><strong>Senha:</strong></td>
+                    <td><input type="password" name="password" placeholder="Mínimo 6 caracteres" required size="25"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <br>
+                        <button type="submit" style="padding: 8px 20px;">Cadastrar</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
 
-    <button type="submit">Cadastrar</button>
-</form>
-<p><a href="/">Voltar</a></p>
+        <br>
+        <hr width="30%">
+        <p><a href="/login">Já tem conta? Faça login aqui</a></p>
+        <p><a href="/">Voltar para página inicial</a></p>
+    </center>
 </body>
 </html>
