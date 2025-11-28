@@ -71,12 +71,10 @@ public class AuthController {
                             HttpSession session) {
         return userRepository.findByUsername(username)
                 .filter(user -> user.getPassword().equals(password))
-                .map(user -> {
+                 .map(user -> {
                     session.setAttribute("user", user); // salva usuário na sessão
                     return "redirect:/dashboard";
                 })
                 .orElse("redirect:/login?error=true");
     }
 }
-
-
