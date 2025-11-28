@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Registrar Humor</title>
+</head>
+<body>
+<div class="container">
+    <h1>Registrar Humor</h1>
+
+    <form action="/dashboard/registrar" method="post">
+        <label for="status">Como você está se sentindo hoje?</label>
+        <select id="status" name="status" required>
+            <option th:each="s : ${statusList}" th:value="${s}" th:text="${s}"></option>
+        </select>
+
+        <label for="texto">Mensagem:</label>
+        <textarea id="texto" name="texto" rows="4" required></textarea>
+
+        <label>Tags:</label>
+
+        <div class="tags-container">
+            <div th:each="t : ${tagsList}" class="tag-item">
+                <input type="checkbox" name="tags" th:value="${t}" th:id="${'tag-'+t}" class="tag-checkbox">
+                <label th:for="${'tag-'+t}" class="tag-label" th:text="${t}"></label>
+            </div>
+        </div>
+
+        <button type="submit">Salvar</button>
+    </form>
+
+    <a href="/dashboard" class="back-link">Voltar ao Dashboard</a>
+</div>
+</body>
+</html>

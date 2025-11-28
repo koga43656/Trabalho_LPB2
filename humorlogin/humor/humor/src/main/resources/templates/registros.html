@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Meus Registros - Sistema Humor</title>
+</head>
+<body class="registros">
+<div class="page-container">
+    <h1>Meus Registros</h1>
+
+    <!-- Barra de filtro -->
+    <form th:action="@{/dashboard/registros}" method="get" class="filtro-form">
+        <label for="status">Filtrar por humor:</label>
+        <select name="status" id="status">
+            <option value="">Todos</option>
+            <option th:each="s : ${statusOptions}"
+                    th:value="${s}"
+                    th:text="${s}"
+                    th:selected="${statusSelecionado == s}">
+            </option>
+        </select>
+        <button type="submit">Buscar</button>
+    </form>
+
+    <div class="notas-container">
+        <div class="nota" th:each="registro : ${registros}">
+            <strong th:text="${registro.usuario.username}">Usuário</strong>
+            <p>Status: <span th:text="${registro.status}">Status</span></p>
+            <p th:text="${registro.texto}">Texto</p>
+            <p><em th:text="${#strings.arrayJoin(registro.tags.toArray(), ', ')}">Tags</em></p>
+            <small th:text="${#temporals.format(registro.dataHora, 'dd/MM/yyyy HH:mm')}">Data</small>
+
+            <!-- Botão de apagar -->
+            <form th:action="@{'/dashboard/registros/deletar/' + ${registro.id}}" method="post" class="delete-form">
+                <button type="submit" class="delete-btn">Apagar</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="voltar">
+        <p><a href="/dashboard">Voltar para o Dashboard</a></p>
+    </div>
+</div>
+</body>
+</html>
