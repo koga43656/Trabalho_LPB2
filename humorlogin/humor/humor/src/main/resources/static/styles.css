@@ -1,43 +1,782 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+/* ==============================
+   GLOBAL
+================================= */
 
-* { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+* {
+    box-sizing: border-box;
+    font-family: "Inter", Arial, sans-serif;
+}
 
-body { background: linear-gradient(135deg,#89f7fe,#66a6ff); display:flex; justify-content:center; align-items:center; min-height:100vh; padding:20px; }
+body {
+    background: #f4f4f6;
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    color: #333;
+}
 
-.container { background:#fff; padding:50px 40px; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.15); width:100%; max-width:500px; text-align:center; animation:fadeIn 0.8s ease-in-out; }
+/* Animação padrão */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
 
-h1 { font-size:2.2rem; margin-bottom:20px; color:#2d2d2d; }
+/* ==============================
+   PÁGINA INICIAL (INDEX)
+================================= */
+body > center {
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    padding: 0;
+}
 
-.subtitle { font-size:1.1rem; color:#555; margin-bottom:30px; }
+body > center h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #222;
+}
 
-.message { padding:12px; border-radius:10px; margin-bottom:20px; font-size:0.95rem; font-weight:500; text-align:center; }
-.message.success { background:#e6ffed; border:1px solid #28a745; color:#19692c; }
-.message.error { background:#ffe6e6; border:1px solid #dc3545; color:#7a1a1a; }
+body > center p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 30px;
+}
 
-form { text-align:left; }
-form label { display:block; font-weight:600; margin-bottom:5px; color:#444; }
-form input { width:100%; padding:12px; margin-bottom:15px; border:1px solid #ccc; border-radius:12px; font-size:1rem; outline:none; transition:all 0.3s ease; }
-form input:focus { border-color:#66a6ff; box-shadow:0 0 6px rgba(102,166,255,0.5); }
+/* Botões da página inicial */
+body > center .btn-primary button {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    margin-right: 20px
+}
 
-button { background:#66a6ff; color:#fff; border:none; padding:12px; width:100%; border-radius:12px; font-size:1rem; cursor:pointer; font-weight:600; transition:background 0.3s, transform 0.2s; }
-button:hover { background:#4d8de0; transform:scale(1.03); }
-button:active { transform:scale(0.98); }
 
-.links { margin-top:20px; text-align:center; }
-.links a { display:block; margin:5px 0; color:#444; text-decoration:none; font-size:0.95rem; transition:color 0.3s; }
-.links a:hover { color:#66a6ff; }
 
-.actions { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; }
-.actions a { text-decoration:none; }
-.actions a button { background:#66a6ff; color:#fff; border:none; padding:12px 25px; border-radius:12px; font-size:1rem; font-weight:600; cursor:pointer; transition:background 0.3s, transform 0.2s; }
-.actions a button:hover { background:#4d8de0; transform:scale(1.03); }
-.actions a button:active { transform:scale(0.98); }
+body > center .btn-outline button {
+    background: transparent;
+    color: #667eea;
+    border: 2px solid #667eea;
+    padding: 12px 30px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+    margin-left: 20px
+}
 
-@keyframes fadeIn { from{opacity:0; transform:translateY(-10px);} to{opacity:1; transform:translateY(0);} }
+body > center .btn-primary button:hover {
+    transform: translateY(-2px);
+    background: #5a6fd8;
+    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
 
-@media(max-width:500px){
-  .container{padding:30px 20px;}
-  .actions{flex-direction:column;}
-  .actions a{width:100%;}
-  .actions a button{width:100%;}
+body > center .btn-outline button:hover {
+    transform: translateY(-2px);
+    background: rgba(102, 126, 234, 0.08);
+}
+
+/* ==============================
+   TELAS DE LOGIN E CADASTRO
+================================= */
+
+/* Container para login e cadastro */
+body > center {
+    animation: fadeInUp 0.3s ease-out;
+}
+
+/* Formulários de login e cadastro */
+body > center form {
+    background: #ffffff;
+    padding: 45px 40px; /* Aumentado */
+    border-radius: 18px;
+    box-shadow: 0 8px 26px rgba(0,0,0,0.18), 0 3px 8px rgba(0,0,0,0.10);
+    max-width: 420px;
+    width: 100%;
+    margin: 25px auto; /* Centralizado */
+}
+
+body > center h1 {
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+    color: #222;
+    text-align: center;
+}
+
+/* Tabelas dos formulários */
+body > center table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0px 10px; /* Espaçamento adicional */
+    border-spacing: 30px 0;
+}
+
+body > center td {
+    padding: 12 20px; /* Aumentado */
+    vertical-align: middle;
+}
+
+
+body > center td[align="right"] {
+    text-align: left; /* Alinha à esquerda */
+    padding-left: 10px; /* Distância da borda esquerda */
+    padding-right: 15px;
+    width: 25%; /* Largura menor para os labels */
+    font-weight: 500;
+    color: #444;
+    white-space: nowrap;
+}
+
+
+body > center td[align="center"] {
+    text-align: center;
+}
+
+/* Inputs dos formulários */
+body > center input[type="text"],
+body > center input[type="email"],
+body > center input[type="password"] {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e1e5e9;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    transition: all 0.25s ease;
+    background: #fafbfc;
+}
+
+body > center input[type="text"]:focus,
+body > center input[type="email"]:focus,
+body > center input[type="password"]:focus {
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+    outline: none;
+}
+
+/* ==============================
+   BOTÕES DE LOGIN/CADASTRO - MAIORES
+================================= */
+
+body > center button[type="submit"] {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 18px 45px; /* Altura aumentada */
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    margin-top: 20px; /* Aumentado */
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    width: auto;
+    min-width: 220px; /* Ligeiramente maior */
+}
+
+body > center button[type="submit"]:hover {
+    background: #5a6fd8;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+}
+
+/* Links abaixo dos formulários */
+body > center hr {
+    border: none;
+    border-top: 1px solid #e1e5e9;
+    margin: 25px 0;
+}
+
+body > center a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    display: inline-block;
+    margin: 5px 0;
+}
+
+body > center a:hover {
+    color: #5a6fd8;
+    text-decoration: underline;
+}
+
+/* Mensagens de alerta */
+body > center [style*="color: green"] {
+    background: #f0fff4;
+    border: 1px solid #9ae6b4;
+    color: #2d7730;
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 400px;
+    font-weight: 500;
+    text-align: center;
+}
+
+body > center [style*="color: red"] {
+    background: #fff5f5;
+    border: 1px solid #fed7d7;
+    color: #c53030;
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 400px;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* ==============================
+   PÁGINA DE REGISTROS (COMPACTA)
+================================= */
+
+body.registros {
+    justify-content: flex-start;
+    padding: 30px 20px;
+}
+
+.page-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.registros h1 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+    color: #222;
+}
+
+/* Container principal dos registros */
+.notas-container {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 25px;
+    margin-top: 20px;
+    box-shadow: 0 8px 26px rgba(0,0,0,0.18), 0 3px 8px rgba(0,0,0,0.10);
+}
+
+/* Filtro */
+.filtro-form {
+    background: #f8f9fa;
+    padding: 18px 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 12px;
+    align-items: end;
+    flex-wrap: wrap;
+    border: 1px solid #e9ecef;
+}
+
+.filtro-form label {
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #444;
+    font-size: 0.9rem;
+}
+
+.filtro-form select {
+    flex: 1;
+    min-width: 150px;
+    margin-bottom: 0;
+    padding: 10px 12px;
+    border: 1px solid #d0d0d0;
+    border-radius: 8px;
+    background: white;
+    font-size: 0.9rem;
+}
+
+.filtro-form button {
+    padding: 10px 18px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: 0.2s ease;
+}
+
+.filtro-form button:hover {
+    background: #5a6fd8;
+    transform: translateY(-1px);
+}
+
+/* Cartões de registro COMPACTOS */
+.nota {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    border-left: 4px solid #667eea;
+    transition: 0.2s ease;
+    position: relative;
+    border: 1px solid #e9ecef;
+}
+
+.nota:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Cabeçalho compacto do registro */
+.nota-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.nota-user {
+    font-weight: 700;
+    color: #222;
+    font-size: 1rem;
+}
+
+.nota-status {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: #667eea;
+    color: white;
+}
+
+/* Conteúdo compacto */
+.nota-texto {
+    color: #444;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 8px 0;
+    padding: 8px 0;
+    border-top: 1px solid #e9ecef;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.nota-tags {
+    font-size: 0.8rem;
+    color: #666;
+    font-style: italic;
+    margin: 6px 0;
+}
+
+.nota-data {
+    color: #888;
+    font-size: 0.75rem;
+    display: inline-block;
+    margin-top: 8px;
+    margin-right: 15px;
+}
+
+/* Botão de deletar DESTACADO */
+.delete-form {
+    float: right;
+    margin-left: 15px;
+}
+.delete-btn {
+    background: #e74c3c !important;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: auto;
+    box-shadow: 0 2px 6px rgba(231, 76, 60, 0.3);
+}
+
+.delete-btn:hover {
+    background: #c0392b !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(231, 76, 60, 0.4);
+}
+
+/* ==============================
+   CONTAINER PRINCIPAL (DASHBOARD)
+================================= */
+
+.container {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 40px 32px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 8px 26px rgba(0,0,0,0.18), 0 3px 8px rgba(0,0,0,0.10);
+    animation: fadeInUp 0.25s ease-out;
+}
+
+/* Título "Bem-vindo" */
+.container h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+/* Subtítulo */
+.subtitle {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+/* ==============================
+   BOTÕES DA INTERFACE INICIAL
+================================= */
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 30px;
+}
+
+.actions a {
+    text-decoration: none;
+}
+
+.actions button {
+    width: 100%;
+    background: #667eea;
+    padding: 16px 22px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.actions button:hover {
+    transform: translateY(-3px);
+    background: #5a6fd8;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+/* ==============================
+   FORMULÁRIO REGISTRAR HUMOR
+================================= */
+
+.container form {
+    text-align: left;
+    margin: 25px 0;
+}
+
+.container label {
+    display: block;
+    text-align: left;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.container input,
+.container select,
+.container textarea {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid #d0d0d0;
+    margin-bottom: 20px;
+    transition: 0.15s ease;
+    background: #fafafa;
+    font-size: 0.95rem;
+}
+
+.container input:focus,
+.container select:focus,
+.container textarea:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 2px rgba(102,126,234,0.25);
+    outline: none;
+    background: white;
+}
+
+.container textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* ==============================
+   BOTÃO SALVAR HUMOR - COM ESTILO
+================================= */
+
+.container button[type="submit"] {
+    width: 100%;
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 16px 30px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    margin-top: 20px;
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.container button[type="submit"]:hover {
+    background: #5a6fd8;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+}
+
+/* ==============================
+   CALENDÁRIO
+================================= */
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    max-width: 700px;
+    margin: 30px auto;
+}
+
+.day {
+    background: white;
+    padding: 15px 8px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.day:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Cores dos humores */
+.CALMO { background-color: #b3e5fc; border-left: 4px solid #4fc3f7; }
+.FELIZ { background-color: #a5d6a7; border-left: 4px solid #66bb6a; }
+.TRISTE { background-color: #90caf9; border-left: 4px solid #42a5f5; }
+.BRAVO { background-color: #ef9a9a; border-left: 4px solid #f44336; }
+.DESAPONTADO { background-color: #ce93d8; border-left: 4px solid #ab47bc; }
+.PREOCUPADO { background-color: #ffcc80; border-left: 4px solid #ffa726; }
+.ASSUSTADO { background-color: #b39ddb; border-left: 4px solid #7e57c2; }
+.FRUSTRADO { background-color: #f48fb1; border-left: 4px solid #ec407a; }
+.ESTRESSADO { background-color: #ffab91; border-left: 4px solid #ff7043; }
+
+/* ==============================
+   LINKS E BOTÕES SECUNDÁRIOS
+================================= */
+
+.back-link, .voltar a {
+    display: inline-block;
+    margin-top: 20px;
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: 0.2s ease;
+}
+
+.back-link:hover, .voltar a:hover {
+    color: #5a6fd8;
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.links a {
+    color: #667eea;
+    font-weight: 500;
+    margin: 8px 0;
+    display: block;
+    text-decoration: none;
+    transition: 0.2s ease;
+    padding: 8px 0;
+}
+
+.links a:hover {
+    color: #4b5dd1;
+}
+
+/* ==============================
+   MODAL
+================================= */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    text-align: left;
+    position: relative;
+}
+
+.tags-container {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.tag-checkbox {
+    display: none; /* esconde o checkbox */
+}
+
+.tag-label {
+    padding: 8px 14px;
+    border: 2px solid #888;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.2s;
+    user-select: none;
+}
+
+/* Quando o checkbox estiver marcado */
+.tag-checkbox:checked + .tag-label {
+    background-color: #4CAF50;
+    color: white;
+    border-color: #4CAF50;
+}
+
+
+.close-btn {
+    float: right;
+    cursor: pointer;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #666;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
+
+.close-btn:hover {
+    color: #333;
+}
+
+.registro-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 12px 0;
+    background-color: #fafafa;
+    line-height: 1.5;
+}
+
+/* ==============================
+   RESPONSIVIDADE
+================================= */
+
+@media (max-width: 768px) {
+    body {
+        padding: 20px 15px;
+    }
+
+    body > center form {
+        padding: 30px 25px;
+    }
+
+    .container {
+        padding: 30px 20px;
+    }
+
+    .calendar {
+        gap: 4px;
+    }
+
+    .day {
+        padding: 10px 4px;
+        min-height: 60px;
+        font-size: 0.85rem;
+    }
+
+    .notas-container {
+        padding: 20px 15px;
+    }
+
+    .filtro-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filtro-form select {
+        min-width: auto;
+    }
+
+    .nota-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    body > center form {
+        padding: 25px 20px;
+    }
+
+    body > center td {
+        display: block;
+        width: 100%;
+        text-align: left !important;
+        padding: 8px 0;
+    }
+
+    body > center td[align="right"] {
+        width: 100%;
+        padding-right: 0;
+        margin-bottom: 4px;
+    }
+
+    .container {
+        padding: 25px 15px;
+    }
+
+    .calendar {
+        grid-template-columns: repeat(7, 1fr);
+    }
+
+    .day {
+        padding: 8px 2px;
+        min-height: 50px;
+        font-size: 0.75rem;
+    }
+
+    .nota {
+        padding: 12px;
+    }
 }
